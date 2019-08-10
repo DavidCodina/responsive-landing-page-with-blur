@@ -1,0 +1,322 @@
+/* =============================================================================
+
+============================================================================= */
+
+/* If you do this, then you'll need to build all typographic elements back up. */
+* {
+  box-sizing: border-box;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+*::before, *::after { box-sizing: border-box; }
+
+
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+	min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-size: 16px;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: rgba(0, 0, 0, 0.9);
+  overlow: hidden;
+}
+
+
+/* =============================================================================
+                                Typography
+============================================================================= */
+
+
+/* https://getbootstrap.com/docs/4.3/content/reboot/
+All heading elements—e.g., <h1>—and <p> are reset to have their margin-top removed.
+Headings have margin-bottom: .5rem added and paragraphs margin-bottom: 1rem for easy spacing. */
+
+/* Bootstrap 4.3.1 @ 76 */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* Bootstrap 4.3.1 @ 362 */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Bootstrap 4.3.1 @ 369 */
+h1, .h1 { font-size: 2.5rem;  }
+h2, .h2 { font-size: 2rem;    }
+h3, .h3 { font-size: 1.75rem; }
+h4, .h4 { font-size: 1.5rem;  }
+h5, .h5 { font-size: 1.25rem; }
+h6, .h6 { font-size: 1rem;    }
+
+
+/* Bootstrap 4.3.1 @ 81 */
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+
+/* ===========================
+           <a>
+=========================== */
+
+
+/* Bootstrap 4.3.1 @ 155 */
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+/* Bootstrap 4.3.1 @ 161 */
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Bootstrap 4.3.1 @ 166 */
+a:not([href]):not([tabindex]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Bootstrap 4.3.1 @ 171 */
+a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Bootstrap 4.3.1 @ 176 */
+a:not([href]):not([tabindex]):focus {
+  outline: 0;
+}
+
+
+/* =============================================================================
+                              Utility classes
+============================================================================= */
+/* Putting utility classes here could potentially create problems.
+It might be better to locate them toward the bottom of the file -like in Bootstrap.
+That way they have precedence. */
+
+.bg-light {
+  background: #f4f4f4;
+  color: #333;
+}
+
+.bg-dark {
+  background: #333;
+  color: #f4f4f4;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin: auto is a quick and easy way to center the item.
+  However, it will jack up the height and widht of container.
+  I prefer to use display: flex. However, then you can't use this
+  directly on on grid containers. */
+}
+
+
+/* =============================================================================
+                              header
+============================================================================= */
+
+
+/* The blur effect will only work on desktop computers because it's dependent on
+hover. In this case, the header is actually the full height of the browser window.
+Initially, .header was called .showcase, but I changed it.
+
+
+The background image is attached to the ::after pseudo element.
+A blur filter is applied to it. Then on :hover of .header ::after transitions to
+filter: blur(0px) over 1000ms.
+
+
+Conversely, the .conent div receives a blur of filter: blur(2px) when the header is
+hovered over. */
+
+.header {}
+
+.header::after {
+  display: block;
+  height: 100vh;
+  width: 100%;
+  content: '';
+  background-image: url('../images/home-background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-filter: blur(10px);
+  filter:         blur(10px);
+  /* ? */
+  transition: -webkit-filter 1s linear, filter 1s linear;
+}
+
+/* focus background on hover */
+.header:hover::after {
+  filter:         blur(0px);
+  -webkit-filter: blur(0px);
+}
+
+
+/* ==========================
+      .header-content
+========================== */
+
+
+.header-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  text-align: center;
+  filter: blur(0px);
+  -webkit-filter: blur(0px);
+  /* ? */
+  transition: -webkit-filter 1s linear, filter 1s linear;
+  z-index: 1;
+}
+
+.header-content .header-logo {
+  width: 200px;
+}
+
+.header-content .header-title {
+  font-size: 32px;
+  margin-top: 25px;
+  line-height: 1.2;
+}
+
+.header-content .header-text {
+  margin-top: 16px;
+}
+
+/* blur .header-content on hover */
+.header:hover .header-content {
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+}
+
+
+/* =============================================================================
+                              main
+============================================================================= */
+
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.container p {
+  line-height: 2;
+}
+
+.grid-item {
+  padding: 50px 12.5px;
+}
+
+.services-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align:center;
+}
+
+.services-grid-container i {
+  margin-bottom: 25px;
+}
+
+.about-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
+/* =============================================================================
+                              footer
+============================================================================= */
+
+
+footer {
+  padding: 32px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 20px;
+  line-height:1;
+}
+
+
+/* =============================================================================
+                              Media Queries
+============================================================================= */
+
+
+@media (max-width: 560px) {
+  .header::after {
+    height: 50vh;
+  }
+
+  .header-content {
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .header-content .header-logo {
+    width: 140px;
+  }
+
+  /* hide .header-text at 560px and below. */
+  .header-content .header-text {
+    display: none;
+  }
+
+  .services-grid-container,
+  .about-grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-item {
+    padding: 25px;
+  }
+
+  .grid-item:first-child {
+    padding-top: 50px;
+  }
+
+  .grid-item:last-child {
+    padding-bottom: 50px;
+  }
+}
+
+/* Landscape */
+@media (max-height: 500px) {
+  .header-content .header-title,
+  .header-content .header-text {
+    display: none;
+  }
+}
